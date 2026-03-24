@@ -1,6 +1,8 @@
 package Bai01;
 import java.util.ArrayList;
 
+
+
 public class testLamba {
 	public static void main(String[] args) {
 		ArrayList<String> names = new ArrayList<>();
@@ -18,11 +20,22 @@ public class testLamba {
 
         System.out.println("All names:");
         names.forEach(name -> System.out.println(name));
+        
+        for(String x : names) {
+        	System.out.println(x);
+        }
 
         System.out.println("\nNames length > 5:");
         names.stream()
              .filter(name -> name.length() > 5)
+             .filter(name -> name.contains("L"))
              .forEach(name -> System.out.println(name));
+        
+//        for(String x : names) {
+//        	if(x.length() > 5) {
+//        		System.out.println(x);
+//        	}
+//        }
 
         System.out.println("\nSorted A-Z:");
         names.stream()
