@@ -45,4 +45,5 @@ public class Employee {
 		System.out.println("Name: "+ getName());
 		System.out.println("Salary: "+ getSalary());
 	}
+	
 }
