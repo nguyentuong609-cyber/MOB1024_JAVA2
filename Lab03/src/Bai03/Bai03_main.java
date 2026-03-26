@@ -29,13 +29,17 @@ public class Bai03_main {
 		double average = list.stream()
 							.mapToLong(Employee :: getSalary)
 							.average()
-							.getAsDouble();
+							.orElse(0);
 		System.out.println(average);
 		
 		System.out.println("Max salary: ");
 		int max = list.stream().mapToInt(x -> x.getSalary())
 				.max().getAsInt();
 		System.out.println(max);
+		
+//		System.out.println("Max salary 2: ");
+//		Employee maxSalary = list.stream()
+//								.max(Com)
 		
 		
 	}

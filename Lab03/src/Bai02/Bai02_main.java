@@ -1,5 +1,6 @@
 package Bai02;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Bai02_main {
 	public static void main(String[] args) {
@@ -30,6 +31,10 @@ public class Bai02_main {
 			.sorted((x,y) -> x.getSalary() - y.getSalary())
 			.forEach(z -> z.printEmployee());
 		
+		list.stream()
+			.sorted(Comparator.comparing(Employee :: getSalary).reversed())
+			.forEach(System.out::println);;
+		
 		System.out.println("");
 		System.out.println("Employee who has letter A in their name:");
 		int count = (int) 
@@ -47,6 +52,10 @@ public class Bai02_main {
 		}
 		System.out.println(i);
 		
+//		long count = list.stream()
+//						.filter(employee -> !employee.getName().isEmpty() &&
+//								(employee.getName().charAt(0) == "A") || employee.getName().charAt(0) == "a")
+//						.count();
 		
 	}
 }

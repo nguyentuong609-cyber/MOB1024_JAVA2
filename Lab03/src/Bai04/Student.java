@@ -4,6 +4,7 @@ package Bai04;
 public class Student {
 	private String ID;
 	private String name;
+	private double GPA;
 	private StudentType type;
 	
 	public enum StudentType {
@@ -23,6 +24,12 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public double getGPA() {
+		return GPA;
+	}
+	public void setGPA(double gpa) {
+		this.GPA = gpa;
+	}
 	public StudentType getType() {
 		return type;
 	}
@@ -31,15 +38,17 @@ public class Student {
 	}
 	public Student() {}
 	
-	public Student(String iD, String name, StudentType type) {
+	public Student(String iD, String name, double gpa,StudentType type) {
 		setID(iD);
 		setName(name);
+		setGPA(gpa);
 		setType(type);
 	}
 	
 	public void printSV() {
 		System.out.println("ID: " + getID());
 		System.out.println("Ten: "+ getName());
+		System.out.println("GPA: " +getGPA());
 		System.out.println("Type: " + getType());
 	}
 }
