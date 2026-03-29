@@ -16,18 +16,27 @@ public class Student {
 		return ID;
 	}
 	public void setID(String iD) {
-		this.ID = iD;
+	    if (iD == null || iD.isBlank()) {
+	        throw new IllegalArgumentException("ID must not be null or empty");
+	    }
+	    this.ID = iD;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
+		if(name == null || name.isBlank()) {
+			throw new IllegalArgumentException("Nanme must not be null or empty");
+		}
 		this.name = name;
 	}
 	public double getGPA() {
 		return GPA;
 	}
 	public void setGPA(double gpa) {
+		if(gpa < 0 || gpa > 4) {
+			throw new IllegalArgumentException("Invalid score");
+		}
 		this.GPA = gpa;
 	}
 	public StudentType getType() {
@@ -44,6 +53,7 @@ public class Student {
 		setGPA(gpa);
 		setType(type);
 	}
+		
 	
 //	public void printSV() {
 //		System.out.println("ID: " + getID());
@@ -51,10 +61,10 @@ public class Student {
 //		System.out.println("GPA: " +getGPA());
 //		System.out.println("Type: " + getType());
 //	}
+	
 	@Override
 	public String toString() {
-		return "Student [ID=" + ID + ", name=" + name + ", GPA=" + GPA + ", type=" + type + "]";
+		return "Student [ID=" + getID() + ", name=" + getName() + ", GPA=" + getGPA() + ", type=" + getType() + "]";
 	}
-	
 	
 }
