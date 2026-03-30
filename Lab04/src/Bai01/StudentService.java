@@ -72,9 +72,7 @@ public class StudentService {
 	}
 	
 	public void displayStudentList() {
-		for(Student s : list) {
-			System.out.println(s);
-		}
+		list.forEach(s -> System.out.println(s));
 	}
 	
 	// boolean for id check
@@ -87,6 +85,11 @@ public class StudentService {
 		return false;
 	}
 	
+//	public boolean isIdExists(String id) {
+//	    return list.stream()
+//	            .anyMatch(s -> s.getID().equalsIgnoreCase(id));
+//	}
+	
 	public Student findByID(String id) {
 		for(Student s : list) {
 			if(s.getID().equalsIgnoreCase(id)) {
@@ -95,4 +98,5 @@ public class StudentService {
 		}
 		return null;
 	}
+	
 }

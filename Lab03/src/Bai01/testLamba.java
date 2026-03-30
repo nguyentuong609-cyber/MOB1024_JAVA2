@@ -30,6 +30,7 @@ public class testLamba {
              .filter(name -> name.length() > 5)
              .filter(name -> name.contains("L"))
              .forEach(name -> System.out.println(name));
+// 			 .forEach(System.out :: printLn)
         
 //        for(String x : names) {
 //        	if(x.length() > 5) {

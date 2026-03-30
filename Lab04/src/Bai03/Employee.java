@@ -1,4 +1,4 @@
-package Bai02;
+package Bai03;
 
 import java.util.Scanner;
 
