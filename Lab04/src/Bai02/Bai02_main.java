@@ -25,6 +25,7 @@ public class Bai02_main {
 	       System.out.println("Press \"ENTER\" to continue...");
 	       scanner.nextLine();
 	    }
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		EmployeeService employeeList = new EmployeeService();

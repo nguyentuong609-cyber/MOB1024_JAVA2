@@ -2,6 +2,7 @@ package Bai03;
 
 import java.util.ArrayList;
 
+
 public class Bai03_main {
 	public static void main(String[] args) {
 		GenericManager<Student> studentManager = new GenericManager<Student>();
@@ -20,6 +21,9 @@ public class Bai03_main {
 		ArrayList<Student> students = studentManager.getAll();
 		System.out.println(students);
 		
+		System.out.println(studentManager.takeelemet());
+		studentManager.takeelemet();
 		
+		GenericManager<Employee> employeeManager = new GenericManager<Employee>();
 	}
 }

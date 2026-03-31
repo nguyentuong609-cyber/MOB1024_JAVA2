@@ -21,7 +21,7 @@ public class Document {
 
 	public void setDocumentId(String documentId) {
 		if(documentId == null || documentId.isBlank()) {
-			throw new IllegalArgumentException("ID must not be emptied");
+			throw new IllegalArgumentException("ID must not be emptied.");
 		}
 		this.documentId = documentId;
 	}
@@ -36,7 +36,7 @@ public class Document {
 
 	public void setTitleDoc(String titleDoc) {
 		if(titleDoc == null || titleDoc.isBlank()) {
-			throw new IllegalArgumentException("Document must have a title");
+			throw new IllegalArgumentException("Document must have a title.");
 		}
 		this.titleDoc = titleDoc;
 	}
@@ -51,7 +51,7 @@ public class Document {
 
 	public void setAuthorDoc(String authorDoc) {
 		if(authorDoc == null || authorDoc.isBlank()) {
-			throw new IllegalArgumentException("Document must have author name");
+			throw new IllegalArgumentException("Document must have author name.");
 		}
 		this.authorDoc = authorDoc;
 	}
@@ -65,6 +65,9 @@ public class Document {
 
 
 	public void setCategoryDoc(String categoryDoc) {
+		if(categoryDoc == null || categoryDoc.isBlank()) {
+			throw new IllegalArgumentException("Document must have a category.");
+		}
 		this.categoryDoc = categoryDoc;
 	}
 
@@ -77,6 +80,9 @@ public class Document {
 
 
 	public void setPublishYearDoc(int publishYearDoc) {
+		if(publishYearDoc < 0) {
+			throw new IllegalArgumentException("Document must have a valid year.");
+		}
 		this.publishYearDoc = publishYearDoc;
 	}
 
@@ -89,10 +95,14 @@ public class Document {
 
 
 	public void setCopies(List<Copy> copies) {
+		
 		this.copies = copies;
 	}
 
-	public Document() {}
+	
+	public Document() {
+	    this.copies = new ArrayList<>();
+	}
 	
 	public Document(String documentId, String title, String author, String category,int publishYear) {
 	    this.documentId = documentId;
@@ -111,7 +121,12 @@ public class Document {
 				+ ", categoryDoc=" + this.categoryDoc + ", publishYearDoc=" + this.publishYearDoc + ", copies=" + this.copies + "]";
 	}
     
-	public void addCopy(Copy copy) {
+	public void addCopy(Copy copy) throws Exception {
+	    for (Copy c : this.copies) {
+	        if (c.getCopyId().equals(copy.getCopyId())) {
+	            throw new Exception("Duplicate copy ID!");
+	        }
+	    }
 	    this.copies.add(copy);
 	}
 	
@@ -125,7 +140,7 @@ public class Document {
 	            return c;
 	        }
 	    }
-	    return null; // not found
+	    return null;
 	}
     
 }

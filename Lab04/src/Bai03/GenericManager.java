@@ -16,4 +16,7 @@ public class GenericManager<T> {
 	public ArrayList<T> getAll(){
 		return list;
 	}
+	public int takeelemet() {
+		return list.size();
+	}
 }
