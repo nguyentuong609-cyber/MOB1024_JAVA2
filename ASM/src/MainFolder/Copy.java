@@ -1,11 +1,10 @@
 package MainFolder;
 
-import MainFolder.CopyStatus.Status;
 
 public class Copy {
 	private String copyId;
 	private String documentId;
-	private Status status;
+	private CopyStatus status;
 	
 
 	public String getCopyId() {
@@ -27,17 +26,17 @@ public class Copy {
 		this.documentId = documentId;
 	}
 
-	public Status getStatus() {
+	public CopyStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(CopyStatus status) {
 		this.status = status;
 	}
 	
 	public Copy () {}
 
-	public Copy(String copyId, String documentId, Status status) {
+	public Copy(String copyId, String documentId, CopyStatus status) {
 		this.copyId = copyId;
 		this.documentId = documentId;
 		this.status = status;
@@ -47,6 +46,4 @@ public class Copy {
 	public String toString() {
 		return "Copy [copyId=" + this.copyId + ", documentId=" + this.documentId + ", status=" + this.status + "]";
 	}
-	
-	
 }

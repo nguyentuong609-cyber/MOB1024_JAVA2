@@ -1,7 +1,7 @@
 package MainFolder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Document {
 	private String documentId;    
@@ -10,7 +10,7 @@ public class Document {
     private String categoryDoc;
     private int publishYearDoc;
     
-	private List<Copy> copies;
+    private Map<String, Copy> copies = new LinkedHashMap<>();
     
     
     public String getDocumentId() {
@@ -88,20 +88,20 @@ public class Document {
 
 
 
-	public List<Copy> getCopies() {
+	public Map<String, Copy> getCopies() {
 		return copies;
 	}
 
 
 
-	public void setCopies(List<Copy> copies) {
-		
+	public void setCopies(Map<String,Copy> copies) {
+
 		this.copies = copies;
 	}
 
 	
 	public Document() {
-	    this.copies = new ArrayList<>();
+	    this.copies = new LinkedHashMap<String, Copy>();
 	}
 	
 	public Document(String documentId, String title, String author, String category,int publishYear) {
@@ -110,7 +110,7 @@ public class Document {
 	    this.authorDoc = author;
 	    this.categoryDoc = category;
 	    this.publishYearDoc = publishYear;
-	    this.copies = new ArrayList<>();  // starts empty
+	    this.copies = new LinkedHashMap<String, Copy>();  // starts empty
 	}
 
 
@@ -121,26 +121,23 @@ public class Document {
 				+ ", categoryDoc=" + this.categoryDoc + ", publishYearDoc=" + this.publishYearDoc + ", copies=" + this.copies + "]";
 	}
     
+	// addCopy
 	public void addCopy(Copy copy) throws Exception {
-	    for (Copy c : this.copies) {
-	        if (c.getCopyId().equals(copy.getCopyId())) {
-	            throw new Exception("Duplicate copy ID!");
-	        }
+	    if (copies.containsKey(copy.getCopyId())) {
+	    	throw new IllegalArgumentException("Duplicate ID");
 	    }
-	    this.copies.add(copy);
+	    copies.put(copy.getCopyId(), copy);
 	}
 	
-	public void removeCopy(String copyId) {
-	    this.copies.removeIf(c -> c.getCopyId().equals(copyId));
+	public void removeCopy(String copyId) throws Exception {
+	    if (!copies.containsKey(copyId)) {
+	        throw new Exception("Copy not found!");
+	    }
+	    copies.remove(copyId);
 	}
 
 	public Copy findCopyById(String copyId) {
-	    for (Copy c : this.copies) {
-	        if (c.getCopyId().equals(copyId)) {
-	            return c;
-	        }
-	    }
-	    return null;
+	    return copies.get(copyId);
 	}
     
 }

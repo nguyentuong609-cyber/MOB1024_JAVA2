@@ -1,9 +1,6 @@
 package MainFolder;
 
 
-public class CopyStatus {
-	
-	public enum Status{
+public enum CopyStatus {
 		GOOD, USED, NEW
-	}	
 }
