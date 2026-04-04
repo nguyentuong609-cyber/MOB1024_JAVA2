@@ -47,7 +47,7 @@ public class FileService {
 	        File file = new File(FILE_PATH);
 
 	        // if no file exists yet, skip loading
-	        if (!file.exists()) {
+	        if (!file.exists() || file.length() == 0) {
 	            System.out.println("No saved data found, starting fresh.");
 	            return;
 	        }
