@@ -1,30 +1,36 @@
 package connect;
 
-import java.sql.*;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class DBConnect {
 	public static final String HOSTNAME = "localhost";
-	public static final String PORT = "1433";
-	public static final String DBNAME = "Slide6";
-	public static final String USERNAME = "sa";
-	public static final String PASSWORD = "Password.1";
+	public static final String PORT = "3306";
+	public static final String DBNAME = "lab06_jdbc";
+	public static final String USERNAME = "root";
+	public static final String PASSWORD = "MyNewPass";
 	
-	public static DBConnect getConnection() {
+	public static Connection getConnection() {
 
 	    // Create a variable for the connection string
-	    String connectionUrl = "jdbc:sqlserver://" + HOSTNAME + ":" + PORT + ";"
-	            + "databaseName=" + DBNAME + ";encrypt=true;trustServerCertificate=true;";
+		String connectionUrl = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DBNAME
+		        + "?useSSL=false&serverTimezone=UTC";
 
 	    try {
-	        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	        return DriverManager.getConnection(connectionUrl, USERNAME, PASSWORD);
+	    	Connection conn = DriverManager.getConnection(connectionUrl, USERNAME, PASSWORD);
+	    	System.out.println("Connect sucessfully!");
+	    	return conn;
 	    } // Handle any errors that may have occurred.
-	    catch (ClassNotFoundException | SQLException e) {
+	    catch (SQLException  e) {
 	        e.printStackTrace(System.out);
 	    }
 
 	    return null;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getConnection());
 	}
 }

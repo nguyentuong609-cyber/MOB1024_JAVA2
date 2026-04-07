@@ -32,7 +32,7 @@ public class Bai04_main {
                 running = false;
             }
             default -> System.out.println("Invalid choice, please try again.");
-        }
+            }
         }
 
         scanner.close();
