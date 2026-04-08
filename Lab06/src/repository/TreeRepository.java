@@ -81,9 +81,9 @@ public class TreeRepository {
 			return ps.executeUpdate() > 0;
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
+			return false;
 		}
 		
-		return false;
 	}
 	
 	public boolean deleteTree (int id) {
@@ -93,13 +93,31 @@ public class TreeRepository {
 			 PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, id);
 			
-			int row = ps.executeUpdate();
-			return row > 0;
+//			int row = ps.executeUpdate();
+//			return row > 0;
+			return ps.executeUpdate() > 0;
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		
+		return false;
+	}
+	
+	public boolean updateTree(Tree tree) {
+		String sql = "update tree set node_name = ?, parent_id = ?, level = ? where node_id = ?";
+		
+		try (Connection conn = DBConnect.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, tree.getNode_name());
+			ps.setInt(2, tree.getParent_id());
+			ps.setInt(3, tree.getLevel());
+			ps.setInt(4, tree.getNode_id());
+			
+			return ps.executeUpdate() > 0;
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return false;
 	}
 }
