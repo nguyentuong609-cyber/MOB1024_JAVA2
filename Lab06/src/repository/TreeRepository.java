@@ -120,4 +120,36 @@ public class TreeRepository {
 		}
 		return false;
 	}
+	
+	public boolean update2(Tree tree) {
+	    Connection conn = null;
+	    PreparedStatement ps = null;
+	    boolean isUpdated = false;
+
+	    try {
+	        conn = DBConnect.getConnection();
+	        String sql = "update tree set node_name = ?, parent_id = ?, level = ? where node_id = ?";
+	        ps = conn.prepareStatement(sql);
+
+	        ps.setString(1, tree.getNode_name());
+	        ps.setInt(2, tree.getParent_id());
+	        ps.setInt(3, tree.getLevel());
+	        ps.setInt(4, tree.getNode_id());
+
+	        int rowsAffected = ps.executeUpdate();
+	        isUpdated = rowsAffected > 0;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    return isUpdated;
+	}
 }

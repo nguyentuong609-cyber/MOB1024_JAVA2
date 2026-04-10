@@ -32,7 +32,6 @@ public class StudentRepository {
 			System.out.println(e.getMessage());
 			return list;
 		}
-			
 	}
 	
 	public void showAll() {
@@ -88,6 +87,15 @@ public class StudentRepository {
 	        e.printStackTrace();
 	    }
 	    return false;
+	}
+	
+	public void insertStatus (Student s) {
+		boolean inserted = this.insertStudent(s);
+		if(inserted) {
+			System.out.println("Success!");
+		}else {
+			System.out.println("Can't inserted");
+		}
 	}
 	
 	public boolean updateStudent(Student s) {

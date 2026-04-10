@@ -13,7 +13,7 @@ public class FileService {
 	public static void saveToFile(List<Student> students) {
 		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))){
 			oos.writeObject(students);
-			System.out.println("Saved " + students.size() + "students to file");
+			System.out.println("Saved " + students.size() +  "students to file");
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
